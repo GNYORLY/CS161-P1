@@ -1,0 +1,115 @@
+1.
+When testing the program for higher values of N, the program crashes and terminates. This 
+is likely due to the computer running out of memory since the number of recursions it 
+must do to compute the Padovan value grows exponentially as N increases. For my machine, 
+the maximum value of N that could be computed was around 55.
+
+
+2.
+When testing the two functions, the value of SUMS(N) was always 1 less than the value of PAD(N).
+This is because the PAD function essentially computes the total amount of times the function 
+recursively reaches PAD(0)=PAD(1)=PAD(2) which we can consider the leaves of the recursion tree.
+The SUMS function is implemented in almost the same way as the PAD function with minor differences.
+It creates the same recursion tree but instead counts the number of additions or "nodes" in the tree. 
+Since we know the number of nodes in a binary tree is always 1 less than the number of leaves at 
+the bottom of the tree, SUMS(N) must always be 1 less than PAD(N).
+
+
+///////Test Cases/////////
+
+
+--------PAD(N)--------
+
+> (PAD 0)
+1
+> (PAD 1)
+1
+> (PAD 2)
+1
+> (PAD 3)
+2
+> (PAD 4)
+2
+> (PAD 5)
+3
+> (PAD 6)
+4
+> (PAD 7)
+5
+> (PAD 8)
+7
+> (PAD 9)
+9
+> (PAD 10)
+12
+> (PAD 20)
+200 
+> (PAD 40)
+55405 
+> (PAD 50)
+922111 
+
+
+--------SUMS(N)--------
+
+> (SUMS 0)
+0
+> (SUMS 1)
+0
+> (SUMS 2)
+0
+> (SUMS 3)
+1
+> (SUMS 4)
+1
+> (SUMS 5)
+2
+> (SUMS 6)
+3
+> (SUMS 7)
+4
+> (SUMS 8)
+6
+> (SUMS 9)
+8
+> (SUMS 10)
+11
+> (SUMS 20)
+199
+> (SUMS 40)
+55404
+> (SUMS 50)
+922110 
+ 
+
+--------ANON(L)--------
+
+> (ANON '(1 ((((2 (x w)) (r r r) (4 c 5) 6)))))
+(? ((((? (? ?)) (? ? ?) (? ? ?) ?))))
+ 
+> (ANON '(1 2 3 (4 (5 (6)))))
+(? ? ? (? (? (?)))) 
+
+> (ANON '(2))
+(?)
+
+> (ANON '42)
+?
+
+> (ANON 'FOO)
+?
+
+> (ANON '(((L E) F) T))
+(((? ?) ?) ?)
+
+> (ANON '(5 FOO 3.1 -0.2))
+(? ? ? ?)
+
+> (ANON '(1 (FOO 3.1) -0.2))
+(? (? ?) ?)
+
+> (ANON '(((1 2) (FOO 3.1)) (BAR -0.2)))
+(((? ?) (? ?)) (? ?))
+
+> (ANON '(R (I (G (H T)))))
+(? (? (? (? ?))))
